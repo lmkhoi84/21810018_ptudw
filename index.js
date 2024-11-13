@@ -20,7 +20,7 @@ app.set('view engine','hbs');
 
 //Cấu hình routes
 app.get('/createTAbles', (req,res) => {
-    let models = require('/models');
+    let models = require('./models');
     models.sequelize.sync().then(() => {
         res.send('Table created !')
     });
