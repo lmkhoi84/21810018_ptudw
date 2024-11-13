@@ -18,19 +18,17 @@ app.engine('hbs', expressHandlebars.engine({
 }));
 app.set('view engine','hbs');
 
-//Cấu hình routes
-app.get('/createTAbles', (req,res) => {
-    let models = require('./models');
-    models.sequelize.sync().then(() => {
-        res.send('Table created !')
-    });
-});
-app.get('/', (req,res) => {
-    res.render('index');
+//Routes
+
+app.use('/', require('./routes/indexRoutes'));
+
+app.use((req, res, next) => {
+    res.status(404).render('error',{message :'Error 404 : File not Found !'});
 });
 
-app.get('/:page',(req,res)=>{
-    res.render(req.params.page);
+app.use((error,req,res,next) => {
+    console.error(error);
+    res.status(500).send('Error 500 : Internal Server Error');
 });
 
 //Khởi động web server
