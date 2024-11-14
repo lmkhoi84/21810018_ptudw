@@ -21,7 +21,10 @@ controller.show = async (req,res) => {
     }
 
     if (tag > 0){
-        options.where.brandId = tag;
+        options.include = [{
+            model: models.Tag,
+            where: {id: tag}
+        }]
     }
 
     let products = await models.Product.findAll(options);
