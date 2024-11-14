@@ -39,7 +39,6 @@ controller.showHomePage = async (req,res) => {
         limit: 10
     });
 
-
     res.render('index',{brands,featuredProducts,recentProducts});
 };
 
