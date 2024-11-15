@@ -5,7 +5,8 @@ const app = express();
 const port = process.env.PORT || 80;
 const expressHandlebars = require('express-handlebars');
 const {createStarList} = require('./controllers/handlebarsHelper');
-
+const {createPagination} = require('express-handlebars-paginate');
+const session = require('express-session');
 //Cấu hình web : public folder
 app.use(express.static(__dirname+'/public'));
 
@@ -19,13 +20,36 @@ app.engine('hbs', expressHandlebars.engine({
         allowProtoPropertiesByDefault:true
     },
     helpers: {
-        createStarList
+        createStarList,
+        createPagination
     }
 }));
 app.set('view engine','hbs');
 
-//Routes
+//Cấu hình đọc dữ liệu post
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
+//Cấu hình Session
+app.use(session({
+    secret: 'S3rect',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 20 *60 *1000 //20 minute
+    }
+}));
+
+//Middleware khởi tạo giỏ hàng
+app.use((req,res,next) => {
+    let Cart = require('./controllers/cart');
+    req.session.cart = new Cart(req.session.cart ? req.session.cart : {});
+    res.locals.quantity = req.session.cart.quantity;
+    next();
+});
+
+//Routes
 app.use('/', require('./routes/indexRouter'));
 app.use('/products',require('./routes/productsRouter'));
 
