@@ -37,8 +37,22 @@ controller.update = async (req,res) => {
             total: req.session.cart.total
         });
     }
-    return res.sendStatus(204).end()
-    
+    return res.sendStatus(204).end()   
+}
+
+controller.remove = (req,res) => {
+    let id = isNaN(req.body.id) ? 0 : parseInt(req.body.id);
+    req.session.cart.remove(id);
+    return res.json({
+        quantity: req.session.cart.quantity,
+        subtotal: req.session.cart.subtotal,
+        total: req.session.cart.total
+    })
+}
+
+controller.clear = (req,res) => {
+    res.session.cart.clear();
+    return res.sendStatus(200).end();
 }
 
 module.exports = controller;
