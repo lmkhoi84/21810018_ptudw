@@ -52,7 +52,9 @@ app.use((req,res,next) => {
 //Routes
 app.use('/', require('./routes/indexRouter'));
 app.use('/products',require('./routes/productsRouter'));
+app.use('/user',require('./routes/userRouter'));
 
+    //Cài đặt lỗi
 app.use((req, res, next) => {
     res.status(404).render('error',{message :'Error 404 : File not Found !'});
 });
