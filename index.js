@@ -52,7 +52,7 @@ app.use((req,res,next) => {
 //Routes
 app.use('/', require('./routes/indexRouter'));
 app.use('/products',require('./routes/productsRouter'));
-app.use('/user',require('./routes/userRouter'));
+app.use('/users',require('./routes/userRouter'));
 
     //Cài đặt lỗi
 app.use((req, res, next) => {
