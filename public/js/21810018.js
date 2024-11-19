@@ -76,3 +76,16 @@ async function clearCart() {
         }
     }
 }
+
+function placeorders(e){
+    e.preventDefault();
+
+    const addresId = document.querySelector('input[name=addressId]:checked');
+    if (!addresId || addresId.value == 0){
+        if (!e.target.checkValidity()){
+            return e.target.checkValidity();
+        }
+    }
+
+    e.target.submit();
+}

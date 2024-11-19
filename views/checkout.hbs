@@ -12,7 +12,7 @@
         
         
         <!-- Checkout Start -->
-        <form action="/users/placeorders" method="post">
+        <form action="/users/placeorders" method="post" novalidate onsubmit="placeorders(event)">
             <div class="checkout">
                 <div class="container"> 
                     <div class="row">
@@ -41,38 +41,38 @@
                                     <div class="col-md-12">
                                         <div class="payment-method">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="address-0" name="addressId" value="0">
-                                                <label class="custom-control-label" for="address-0"><strong>Ship to different address</strong></label>
+                                                <input type="radio" class="custom-control-input" id="address-0" name="addressId" value="0" {{#unless addresses}}checked{{/unless}}>
+                                                <label class="custom-control-label" for="address-0"><strong>Add new address</strong></label>
                                             </div>
-                                            <div class="payment-content" id="address-0-show" style="display: none;">
+                                            <div class="payment-content" id="address-0-show" style="display: {{#unless addresses}}block{{else}}none{{/unless}};">
                                                 <h2>Shipping Address</h2>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>First Name</label>
-                                                        <input class="form-control" type="text" placeholder="First Name" name="firstName">
+                                                        <input class="form-control" type="text" placeholder="First Name" name="firstName" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Last Name</label>
-                                                        <input class="form-control" type="text" placeholder="Last Name" name="lastName">
+                                                        <input class="form-control" type="text" placeholder="Last Name" name="lastName" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>E-mail</label>
-                                                        <input class="form-control" type="email" placeholder="E-mail" name="email">
+                                                        <input class="form-control" type="email" placeholder="E-mail" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Mobile No</label>
-                                                        <input class="form-control" type="text" placeholder="Mobile No" name="mobile">
+                                                        <input class="form-control" type="text" placeholder="Mobile No" name="mobile" required>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label>Address</label>
-                                                        <input class="form-control" type="text" placeholder="Address" name="address">
+                                                        <input class="form-control" type="text" placeholder="Address" name="address" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Country</label>
                                                         <select class="custom-select" name="country">
-                                                            <option selected>Hồ Chí Minh</option>
-                                                            <option>Đà Nẵng</option>
-                                                            <option>Hà Nội</option>
+                                                            <option selected>Việt Nam</option>
+                                                            <option>China</option>
+                                                            <option>United Stated</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
