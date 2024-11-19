@@ -7,6 +7,14 @@ const expressHandlebars = require('express-handlebars');
 const {createStarList} = require('./controllers/handlebarsHelper');
 const {createPagination} = require('express-handlebars-paginate');
 const session = require('express-session');
+const redisStore = require('connect-redis').default;
+const {createClient} = require('redis');
+const redisClient = createClient({
+    url: 'redis://red-csu3c75umphs738l8ss0:6379'
+    //url:'rediss://red-csu3c75umphs738l8ss0:nXOsS6H55qezh95qeAMxbFEOHeyuPXuY@oregon-redis.render.com:6379'
+});
+redisClient.connect().catch(console.error);
+
 //Cấu hình web : public folder
 app.use(express.static(__dirname+'/public'));
 
@@ -33,6 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 //Cấu hình Session
 app.use(session({
     secret: 'S3rect',
+    store: new redisStore({client: redisClient}),
     resave: false,
     saveUninitialized: false,
     cookie: {
