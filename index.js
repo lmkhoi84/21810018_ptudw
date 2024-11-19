@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8000;
 const expressHandlebars = require('express-handlebars');
 const {createStarList} = require('./controllers/handlebarsHelper');
 const {createPagination} = require('express-handlebars-paginate');
