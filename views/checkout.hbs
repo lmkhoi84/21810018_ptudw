@@ -23,7 +23,7 @@
                                     {{#each addresses}}
                                     <div class="col-md-12">
                                         <div class="payment-method">
-                                            <div class="custom-control custom-checkbox">
+                                            <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input" id="address-{{id}}" name="addressId" value="{{id}}"{{#if isDefault}} checked {{/if}}>
                                                 <label class="custom-control-label" for="address-{{id}}"><strong>{{firstName}} {{lastName}}</strong></label>
                                             </div>
@@ -40,7 +40,7 @@
                                     {{/each}}
                                     <div class="col-md-12">
                                         <div class="payment-method">
-                                            <div class="custom-control custom-checkbox">
+                                            <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input" id="address-0" name="addressId" value="0" {{#unless addresses}}checked{{/unless}}>
                                                 <label class="custom-control-label" for="address-0"><strong>Add new address</strong></label>
                                             </div>
