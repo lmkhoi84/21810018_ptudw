@@ -43,7 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //Cấu hình Session
 app.use(session({
-    secret: process.env.SESSION_SERECT,
+    secret: process.env.SESSION_SECRET,
     store: new redisStore({client: redisClient}),
     resave: false,
     saveUninitialized: false,
