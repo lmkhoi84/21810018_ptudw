@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 80;
@@ -10,7 +12,8 @@ const session = require('express-session');
 const redisStore = require('connect-redis').default;
 const {createClient} = require('redis');
 const redisClient = createClient({
-    url: 'redis://red-csu3c75umphs738l8ss0:6379'
+    url: process.env.REDIS_URL
+    //url: 'redis://red-csu3c75umphs738l8ss0:6379'
     //url:'rediss://red-csu3c75umphs738l8ss0:nXOsS6H55qezh95qeAMxbFEOHeyuPXuY@oregon-redis.render.com:6379'
 });
 redisClient.connect().catch(console.error);
@@ -40,7 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //Cấu hình Session
 app.use(session({
-    secret: 'S3rect',
+    secret: process.env.SESSION_SERECT,
     store: new redisStore({client: redisClient}),
     resave: false,
     saveUninitialized: false,
