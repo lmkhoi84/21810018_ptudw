@@ -1,16 +1,6 @@
 {
   "development": {
-    "username": "ptudw_project_db",
-    "password": "WL7KvxaCPpRfw1xe3ifyHqPFLNBkkou2",
-    "database": "ptudw_project_db_xiwp",
-    "host": "dpg-csu1k7hu0jms73ej07b0-a.oregon-postgres.render.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "use_env_variable": "POSTGRESQL_URL"
   },
   "test": {
     "username": "postgres",
